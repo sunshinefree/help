@@ -1,0 +1,27 @@
+<view style="background:#018FFD">
+
+    <view  style="width:700rpx;margin:20rpx auto;height:250rpx;background:#018FFD;border-radius:8px;display:flex;">
+     <view style="width:200rpx;height:250rpx;">
+  <image class="userinfo-avatar" style="margin:auto;" src="{{userInfo.avatarUrl}}"></image> 
+    <!-- <view style="font-size:20rpx;color:#eee;width:100rpx;"><view style="margin:auto;text-align:certer;">{{userInfo.nickName}}</view></view> -->
+    </view>
+    <view style="width:300rpx;hehight:250rpx;display:flex;flex-direction:column;overflow:hidden;">
+    <view style="color:#fff;font-size:30rpx ;"> {{userInfo.title}}</view>
+   <!-- <view style="color:#eee;font-size:30rpx;margin-top:18px ;"> 我的可用互助值：<text style="color:#ff9700"> {{userInfo.creditValue}} </text></view> -->
+           <view style="color:#eee;font-size:20rpx;margin:auto;"> 互助，点滴互助用来帮助互相帮助的人，</view>
+    </view>
+
+  </view>
+
+<button></button>
+
+<navigator url="/pages/fabu/fabu"><button style="color:#fff;border:1rpx solid #eee;width:750rpx;" >我的发布</button></navigator>
+
+
+<view style="background:#ff9700;">
+<navigator url="/pages/join/join"><button style="color:#fff;" >我的参加</button></navigator>
+
+
+</view>
+</view>
+

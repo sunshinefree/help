@@ -1,0 +1,11 @@
+<!--miniprogram/pages/newHelp/newHelp.wxml-->
+<input style="text-align:center;" bindinput="title"  placeholder="请输入互助项目主题"></input>
+
+
+<input style="text-align:center;" bindinput="steps" placeholder="请输入完成任务的相关步骤信息"></input>
+
+<image bindtap="chooseImg" style="margin:auto;width:700rpx;" src="{{verifyImg}}"></image>
+
+
+
+<button bindtap="fabu" style="background:#ff9700;color:#fff;width:700rpx;">发布互助信息</button>

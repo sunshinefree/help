@@ -1,0 +1,69 @@
+<!--index.wxml-->
+<import src="../common/mainTabCell.wxml" />
+
+<button bindgetuserinfo="onGetUserInfo" type="primary" style="width:750rpx;" wx:if="{{!logged}}" open-type="getUserInfo">登录</button>
+
+<view class="container" wx:if="{{logged}}">
+<swiper style="height:300rpx;width:750rpx;">
+<swiper-item wx:for="{{swiperList}}" wx:key="{{index}}"  >
+<image  style="height:300rpx;width:750rpx;background:#E1745F;" src="{{item.imageUrl}}">
+</image>
+</swiper-item>
+</swiper>
+
+
+<!-- 
+<scroll-view scroll-x="true" style="width:750rpx" >
+  <view class="top-s" >
+  <view class=" top-s-item top-tab-item  {{currentTopItem==idx ? 'active' : ''}}" wx:for="{{topTabItems}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="switchTab">
+    {{item}}
+  </view>
+</view>
+</scroll-view> -->
+
+<button bindtap="addHelp" style="color:#fff;border:1rpx solid #eee;width:750rpx;">新建互助</button>
+
+    <scroll-view class="scrollView" scroll-y="true" bindscrolltolower="loadMoreData" >
+      
+      <block wx:for="{{helpList}}" wx:for-item="item" >
+
+            <!-- <template is="helpInfo" data="{{...item}}"   /> -->
+              <view   wx:if="{{item.finishNum==0}}" bindtap="toDetail"  data-item="{{item}}" style="width:700rpx;margin:20rpx auto;height:250rpx;background:#018FFD;border-radius:8px;display:flex;">
+     <view style="width:200rpx;height:250rpx;">
+    <image class="userinfo-avatar" style="margin:20rpxs 25rpx;" src="{{item.avatarUrl}}"></image> 
+    <view > 
+
+      <view style="font-size:20rpx;color:#eee;text-align:center;">   互助值：{{item.creditValue}}  </view></view>
+    </view>
+    <view style="width:300rpx;hehight:250rpx;display:flex;flex-direction:column;overflow:hidden;">
+       <view style="font-size:40rpx;margin:10rpx;color:#ff9700;height:30rpx;"> {{item.nickName}} </view> 
+    <view style="color:#fff;font-size:30rpx;margin:20rpx;height:80rpx; "> {{item.title}}</view>
+        <view style="font-size:30rpx;color:#fff;height:30rpx; "> 👀{{item.viewNum}}</view>
+   <view style="color:#eee;font-size:30rpx;margin-top:20rpx;height:30rpx; ">剩余数量 <text style="color:#ff9700"> {{item.totalNum-item.finishNum}}</text>/{{item.totalNum}}  </view>
+    </view>
+       <view style="color:red;font-size:80rpx;margin:auto;">
+        <!-- +{{item.reward}} -->
+        <!-- 👀{{item.viewNum}} -->
+        </view>
+  </view>
+      </block>
+
+    </scroll-view>
+
+
+</view>
+
+<template name="helpInfo" >
+  <view style="width:700rpx;margin:20rpx auto;height:250rpx;background:#1780FD;border-radius:8px;display:flex;">
+     <view style="width:200rpx;height:250rpx;">
+    <image class="userinfo-avatar" src="{{avatarUrl}}"></image> 
+    </view>
+    <view style="width:300rpx;hehight:250rpx;display:flex;flex-direction:column;">
+    <view style="color:#fff;font-size:50rpx;"> {{title}}</view>
+   <view style="color:#eee;font-size:30rpx;margin-top:50rpx ;">剩余数量 <text style="color:#ff9700"> {{totalNum-finishNum}}</text>/{{totalNum}}</view>
+    </view>
+       <view style="color:#fff;font-size:100rpx;margin:auto;"> {{reward}}</view>
+  </view>
+</template>
+
+

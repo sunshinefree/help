@@ -1,0 +1,81 @@
+<button bindgetuserinfo="onGetUserInfo" type="primary" style="width:750rpx;" wx:if="{{!logged}}" open-type="getUserInfo">登录</button>
+
+
+    <scroll-view class="scrollView" scroll-y="true"  wx:if="{{logged}}" bindscrolltolower="loadMoreData" >
+      
+
+
+            <!-- <template is="helpInfo" data="{{...item}}"   /> -->
+              <!-- <view   style="width:700rpx;margin:20rpx auto;height:250rpx;background:#fff;border-radius:8px;display:flex;">
+     <view style="width:200rpx;height:250rpx;">
+    <image class="userinfo-avatar" src="{{help.avatarUrl}}"></image> 
+    <view>{{help.nickName}}</view>
+    </view>
+    <view style="width:300rpx;hehight:250rpx;display:flex;flex-direction:column;">
+    <view style="color:red;font-size:50rpx;"> {{help.title}}</view>
+   <view style="color:#eee;font-size:30rpx;margin-top:50rpx ;">剩余数量 <text style="color:#ff9700"> {{help.totalNum-help.finishNum}}</text>/{{help.totalNum}}</view>
+    </view>
+       <view style="color:red;font-size:50rpx;margin:auto;"> +{{help.reward}}</view>
+  </view> -->
+  
+              <view  bindtap="toDetail"  data-item="{{help}}" style="width:700rpx;margin:20rpx auto;height:250rpx;background:#018FFD;border-radius:8px;display:flex;">
+     <view style="width:200rpx;height:250rpx;">
+    <image class="userinfo-avatar" style="margin:20rpxs 25rpx;" src="{{help.avatarUrl}}"></image> 
+    <view > 
+
+      <view style="font-size:20rpx;color:#eee;text-align:center;">   互助值：{{help.creditValue}}  </view></view>
+    </view>
+    <view style="width:300rpx;hehight:250rpx;display:flex;flex-direction:column;overflow:hidden;">
+       <view style="font-size:40rpx;margin:10rpx;color:#ff9700;height:30rpx;"> {{help.nickName}} </view> 
+    <view style="color:#fff;font-size:30rpx;margin:20rpx;height:80rpx; "> {{help.title}}</view>
+        <!-- <view style="font-size:30rpx;color:#fff;height:30rpx; "> 👀{{help.viewNum}}</view> -->
+   <!-- <view style="color:#eee;font-size:30rpx;margin-top:20rpx;height:30rpx; ">剩余数量 <text style="color:#ff9700"> {{help.totalNum-help.finishNum}}</text>/{{item.totalNum}}  </view> -->
+   
+    </view>
+       <view style="color:red;font-size:80rpx;margin:auto;"> +{{help.reward}}</view>
+  </view>
+
+
+      <block wx:for="{{help.taskSteps}}" wx:for-item="item" >
+              <view   style="width:700rpx;margin:25rpx auto;height:800rpx;background:#fff;border-radius:8px;display:flex;">
+
+
+            <view style="width:700rpx;margin:20rpx auto;background:#fff;color:#000;border-radius:8px;">
+          <view>任务说明:</view>
+        <text wx:if="{{item.head}}">{{item.head}}</text>
+        <text wx:if="{{item.body}}">{{item.body}}</text>
+        <image wx:if="{{item.imageUrl}}" style="width:700rpx;" src="{{item.imageUrl}}"></image>
+   
+    </view>
+         <!-- <template is="step" data="{{ ...item  }}"></template> -->
+  </view>
+      </block>
+
+
+      <view style="width:700rpx;margin:auto;">
+ <view style="background:#ff9700;text-align:center;color:#fff;"> 提交证明任务完成验证信息 </view>
+          <view>
+          <input bindinput='password' style="border:1rpx solid #eee;width:700rpx;"  placeholder="输入完成后获得的口令，无口令可不填"></input>
+          </view>
+
+        <view >
+        <image bindtap="{{statu=='提交审核'? 'chooseImg':''}}" style="width:700rpx;" mode="cover" src="{{help.verifyImgUrl?help.verifyImgUrl:verifyImgUrl}}" ></image>
+        </view>
+      </view>
+
+<view style="dispaly:inline;width:700rpx;margin:auto;">
+<button style="width:500rpx;background:red;display:inline-block;font-size:15px;color:#fff;" bindtap="{{statu=='提交审核'?  'submit' : ''}}"  >{{statu=="审核通过"? "任务审核通过": statu}}</button>
+<button style="width:200rpx;background:#fff;display:inline-block;font-size:15px;color:red;" bindtap="share" open-type="share">转发</button>
+</view>
+    </scroll-view>
+
+
+
+    <template name="step">
+    <view style="width:700rpx;margin:20rpx auto;background:#fff;color:#000;border-radius:8px;">
+  
+        <text wx:if="{{head}}">{{head}}</text>
+        <image wx:if="{{imageUrl}}" style="width:700rpx;" src="{{imageUrl}}"></image>
+        <text wx:if="{{body}}">{{body}}</text>
+    </view>
+    </template>
